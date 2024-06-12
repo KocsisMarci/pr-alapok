@@ -1,5 +1,6 @@
-szavak=["programozás","autó","kötelesség","relaxáció","könyv"]
-
+konnyu_szavak=["munka","könyv","autó","tudás","kép"]
+kozepes_szavak=["programozás","relaxáció","kötelesség","esemény","tapasztalat"]
+nehez_szavak=["képernyőkép","játékkiadó","fájlkezelő","intelligencia","algoritmizálás"]
 lehetsegek_tippek=['a', 'á', 'b', 'c', 'd', 'e', 'é', 'f', 'g', 'h', 'i', 'í', 'j', 'k', 'l', 'm', 'n', 'o', 'ó', 'ö', 'ő', 'p', 'q', 'r', 's', 't', 'u', 'ú', 'ü', 'ű', 'v', 'w', 'x', 'y', 'z']
 
 
@@ -36,7 +37,20 @@ def szotgeneral():
 
     import random
 
-    kitalalando=szavak[random.randint(0,4)]
+    joszonehezseg=False
+    while not joszonehezseg:
+          szonehezseg=input("Milyen nehéz szót akarsz kitalálni? Könnyű[KŰ], közepes[KS], nehéz[NZ]? ")
+          if szonehezseg=="KŰ" or szonehezseg=="KS" or szonehezseg=="NZ":
+                    joszonehezseg=True
+     
+    if szonehezseg=="KŰ":
+          kitalalando=konnyu_szavak[random.randint(0,4)]
+
+    elif szonehezseg=="KS":
+         kitalalando=kozepes_szavak[random.randint(0,4)]
+
+    else:
+          kitalalando=nehez_szavak[random.randint(0,4)]
 
     kitalalando_betukszama=len(kitalalando)
     
@@ -50,7 +64,11 @@ def beker(kitalando_betukszama,kitalalando):
     akasztva=False
     kitalalva=False
     eleg=False
-    akasztasig=5
+    joakasztasig=False
+    while not joakasztasig:
+     akasztasig=int(input("Mennyi legyen az akasztásig? "))
+     if akasztasig>0 and type(akasztasig)==int:
+          joakasztasig=True
     for betu in kitalalando:
         kiiro.append("_")
         kitalalandok.append(betu)
@@ -133,7 +151,11 @@ def beker(kitalando_betukszama,kitalalando):
         if akasztasig==0:
              print("Sajnos, felakasztottuk az illetőt")
              print("A kitalálandó szó ez volt:", kitalalando)
+
+          
              eleg=True
+
+
 
         if len(jo_tippek)==len(kitalalando):
              print("Gratulálok megmentetted az illetőt ")
